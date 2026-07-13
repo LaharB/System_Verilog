@@ -25,3 +25,15 @@ module dff(
   end
   
 endmodule
+
+module d_latch(
+	input logic en, d,
+  	output logic q
+);
+  
+  always_latch begin
+    if(en)
+      q = d;    
+  end
+  
+endmodule
