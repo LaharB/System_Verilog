@@ -29,3 +29,11 @@
 * **`always_latch` (Level-Sensitive Logic):** 
   * **Intentional Latches:** Specifically used when you *want* to design a latch. This allows tools to verify that latch behavior is actually being modeled, and helps differentiate intentional latches from accidental latches (which typically occur due to incomplete `if-else` or `case` statements in `always_comb` blocks).
 
+# SystemVerilog Data States: 2-State vs. 4-State Casting
+
+* **State Definitions:**
+  * **4-State Logic (`logic`, `reg`, `wire`):** Can hold four distinct values: `0`, `1`, `X` (unknown/unknown conflict), and `Z` (high impedance/floating). SystemVerilog defaults to initializing 4-state variables to `X`.
+  * **2-State Logic (`bit`, `int`, `byte`):** Can only hold `0` or `1`. This type is highly efficient for testbenches because it uses less simulation memory. SystemVerilog defaults to initializing 2-state variables to `0`.
+* **Cross-State Assignment Rule:** When a 4-state value containing `X` or `Z` bits is assigned directly to a 2-state variable, SystemVerilog automatically converts all `X` and `Z` bits into `0`.
+* **Example Coercion:** Assigning `4'b01xz` (4-state) to a `bit [3:0]` variable results in `4'b0100`. The valid binary states (`0` and `1`) are preserved, while the non-binary states (`x` and `z`) are pushed to `0`.
+* **Design Precaution:** While 2-state types speed up simulation performance, using them prematurely in hardware design can mask critical runtime issues, such as uninitialized registers or unDriven buses that would otherwise show up as `X` or `Z`.
