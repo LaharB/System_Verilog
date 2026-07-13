@@ -28,3 +28,4 @@
   * **Assignment Checks:** Synthesis and linting tools will aggressively flag errors if blocking assignments (`=`) are used within this block, enforcing the standard RTL practice of using non-blocking assignments (`<=`) for sequential elements.
 * **`always_latch` (Level-Sensitive Logic):** 
   * **Intentional Latches:** Specifically used when you *want* to design a latch. This allows tools to verify that latch behavior is actually being modeled, and helps differentiate intentional latches from accidental latches (which typically occur due to incomplete `if-else` or `case` statements in `always_comb` blocks).
+
