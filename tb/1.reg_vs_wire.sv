@@ -12,3 +12,16 @@ module example_verilog_bad(
   
 endmodule
 
+module example_sv_good(
+  input a,
+  input b,
+  output logic out
+);
+  
+ //can use logic type in both PA and CA
+  always_comb begin
+    out = a & b;
+  end
+  
+endmodule
+
