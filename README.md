@@ -17,7 +17,7 @@
   * **Explicit Assignment:** You can explicitly define the bit pattern for each state (e.g., `IDLE = 3'b000`, `ERROR = 3'b111`). This is highly recommended for robust FSM encoding (like one-hot or gray code).
 * **Simulation & Debugging:** SystemVerilog provides built-in methods for enums. The `.name()` method returns the string representation of the enum's current value (e.g., printing `"READ"` instead of `1`). This makes `$display` statements and testbench debugging much easier to trace.
 
-## 📝 SystemVerilog Procedural Blocks (`always` enhancements)
+# SystemVerilog Procedural Blocks (`always` enhancements)
 
 * **Design Intent Execution:** SystemVerilog introduces specialized `always` blocks (`always_comb`, `always_ff`, `always_latch`) to explicitly state your hardware intent to EDA synthesis and simulation tools, reducing ambiguity compared to the generic Verilog `always` block.
 * **`always_comb` (Combinational Logic):** 
