@@ -43,3 +43,17 @@ module state_enum;
   end
   
 endmodule
+
+typedef enum logic[1:0] {IDLE, READ, WRITE} state; //state auto_increment 
+
+module state_enum;
+  
+  always@(posedge clk) begin
+    case(state)
+      IDLE: state <= READ;
+      READ: state <= WRITE;
+      WRITE: state <= IDLE;
+    endcase
+  end
+  
+endmodule
