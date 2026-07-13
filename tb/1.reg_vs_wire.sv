@@ -25,3 +25,13 @@ module example_sv_good(
   
 endmodule
 
+module example_sv_good_2(
+  input a,
+  input b,
+  output logic out
+);
+ 
+ //logic type can be used in both PAA and CA
+ assign out = a & b;
+  
+endmodule
