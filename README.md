@@ -37,3 +37,13 @@
 * **Cross-State Assignment Rule:** When a 4-state value containing `X` or `Z` bits is assigned directly to a 2-state variable, SystemVerilog automatically converts all `X` and `Z` bits into `0`.
 * **Example Coercion:** Assigning `4'b01xz` (4-state) to a `bit [3:0]` variable results in `4'b0100`. The valid binary states (`0` and `1`) are preserved, while the non-binary states (`x` and `z`) are pushed to `0`.
 * **Design Precaution:** While 2-state types speed up simulation performance, using them prematurely in hardware design can mask critical runtime issues, such as uninitialized registers or unDriven buses that would otherwise show up as `X` or `Z`.
+
+# SystemVerilog Parallel Threads: fork-join Variants
+
+* **Parallel Execution:** Unlike `begin...end` blocks which execute sequentially, statements inside a `fork` block execute concurrently (in parallel) as separate spawned threads.
+* **`fork...join` (Wait for All):** The parent process blocks and waits until **all** spawned child threads have completely finished. 
+  * *Execution:* The main thread resumes at the time of the longest-running child thread (e.g., `t=20`).
+* **`fork...join_any` (Wait for First):** The parent process blocks only until **any one** of the child threads finishes. Once the fastest thread completes, the parent process resumes, while the remaining child threads continue executing in the background.
+  * *Execution:* The main thread resumes at the time of the shortest-running child thread (e.g., `t=5`).
+* **`fork...join_none` (Do Not Wait):** The parent process does not block at all. It schedules the child threads to run in the background and immediately moves on to the next statement outside the block.
+  * *Execution:* The main thread continues at the exact same simulation time it entered the block (e.g., `t=0`).
