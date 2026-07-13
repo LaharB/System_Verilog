@@ -5,7 +5,7 @@ module enum_example;
   initial begin
     color = GREEN;
     $display("Color value:%0d", color);
-    $display("Color name:%0s", color.name());
+    $display("Color name:%s", color.name());
     
   end
   
