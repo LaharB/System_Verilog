@@ -17,7 +17,7 @@ module dff(
   	output logic q
 );
   
-  always_ff@(posedge clk or negedge rst) begin 
+  always_ff@(posedge clk or negedge rst) begin //any BA use will give ERROR
     if(!rst)
       q <= 0;
     else 
