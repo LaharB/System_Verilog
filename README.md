@@ -1,3 +1,6 @@
+<details>
+<summary>Verilog vs. SystemVerilog: Data Types</summary>
+
 # Verilog vs. SystemVerilog: Data Types
 
 * **The Verilog Limitation (`reg` vs. `wire`):** In legacy Verilog, a `reg` data type can strictly only be driven from within procedural blocks (`always`, `initial`). Attempting to drive a `reg` with a continuous assignment (`assign`) results in a compilation error. 
@@ -5,7 +8,14 @@
 * **Universal Assignment:** The `logic` type is highly versatile and can be driven by either method:
   * **Procedural Assignments (PA):** Driven inside blocks like `always_comb`, `always_ff`, or `always_latch`.
   * **Continuous Assignments (CA):** Driven directly using `assign` statements.
-* **Design Rule of Thumb:** Default to using `logic` for internal signals and ports. You only need to revert to a net type (like `wire`) when a signal requires multiple drivers, such as an inout bidirectional bus.
+* **Design Rule of Thumb:** Default to using `logic` for internal signals and ports. You only need to revert to a net type (like `wire`) when a signal requires multiple drivers, such as an inout bidirectional bus. 
+
+</details>
+
+-------
+
+<details>
+<summary>SystemVerilog Enumerations (Enums)</summary>
 
 # SystemVerilog Enumerations (Enums)
 
@@ -16,6 +26,13 @@
   * **Auto-Increment:** If no values are specified (e.g., `{IDLE, READ, WRITE}`), the compiler automatically assigns values starting from `0` and incrementing by 1.
   * **Explicit Assignment:** You can explicitly define the bit pattern for each state (e.g., `IDLE = 3'b000`, `ERROR = 3'b111`). This is highly recommended for robust FSM encoding (like one-hot or gray code).
 * **Simulation & Debugging:** SystemVerilog provides built-in methods for enums. The `.name()` method returns the string representation of the enum's current value (e.g., printing `"READ"` instead of `1`). This makes `$display` statements and testbench debugging much easier to trace.
+
+</details>
+
+-------
+
+<details>
+<summary>SystemVerilog Procedural Blocks</summary>
 
 # SystemVerilog Procedural Blocks (`always` enhancements)
 
@@ -29,6 +46,13 @@
 * **`always_latch` (Level-Sensitive Logic):** 
   * **Intentional Latches:** Specifically used when you *want* to design a latch. This allows tools to verify that latch behavior is actually being modeled, and helps differentiate intentional latches from accidental latches (which typically occur due to incomplete `if-else` or `case` statements in `always_comb` blocks).
 
+</details>
+
+-------
+
+<details>
+<summary>SystemVerilog Data States: 2-State vs. 4-State Casting</summary>
+
 # SystemVerilog Data States: 2-State vs. 4-State Casting
 
 * **State Definitions:**
@@ -37,6 +61,13 @@
 * **Cross-State Assignment Rule:** When a 4-state value containing `X` or `Z` bits is assigned directly to a 2-state variable, SystemVerilog automatically converts all `X` and `Z` bits into `0`.
 * **Example Coercion:** Assigning `4'b01xz` (4-state) to a `bit [3:0]` variable results in `4'b0100`. The valid binary states (`0` and `1`) are preserved, while the non-binary states (`x` and `z`) are pushed to `0`.
 * **Design Precaution:** While 2-state types speed up simulation performance, using them prematurely in hardware design can mask critical runtime issues, such as uninitialized registers or unDriven buses that would otherwise show up as `X` or `Z`.
+
+</details>
+
+-------
+
+<details>
+<summary>SystemVerilog Parallel Threads: fork-join Variants</summary>
 
 # SystemVerilog Parallel Threads: fork-join Variants
 
@@ -47,3 +78,5 @@
   * *Execution:* The main thread resumes at the time of the shortest-running child thread (e.g., `t=5`).
 * **`fork...join_none` (Do Not Wait):** The parent process does not block at all. It schedules the child threads to run in the background and immediately moves on to the next statement outside the block.
   * *Execution:* The main thread continues at the exact same simulation time it entered the block (e.g., `t=0`).
+          
+</details>
