@@ -80,3 +80,22 @@
   * *Execution:* The main thread continues at the exact same simulation time it entered the block (e.g., `t=0`).
           
 </details>
+
+-------
+
+<details>
+<summary>SystemVerilog Queues</summary>
+
+# SystemVerilog Queues
+
+* **Dynamic Nature:** Queues are variable-size, one-dimensional arrays designated by `[$]`. They can grow or shrink dynamically during simulation, making them highly efficient for testbench structures like scoreboards, transaction monitors, and FIFOs.
+* **Built-in Methods:** SystemVerilog provides native methods to easily manipulate data at both ends of the queue without having to manage pointers manually:
+  * `push_back(val)` / `push_front(val)`: Insert elements at the end or beginning.
+  * `pop_back()` / `pop_front()`: Extract and remove elements from the end or beginning.
+* **Data Type Versatility:** Queues can be constructed from virtually any SystemVerilog data type. This includes numeric types (`int`, `bit`, `real`), text (`string`), and custom user-defined types like `enum`.
+* **Bounded vs. Unbounded:**
+  * **Unbounded (`[$]`):** Have no strict maximum size limit; they expand as long as simulation memory allows.
+  * **Bounded (`[$:N]`):** Have a fixed maximum index limit (e.g., `[$:4]` defines a maximum index of 4, allowing up to 5 elements). These are highly useful when you need to model hardware structures that have strict capacity constraints, like hardware FIFOs.
+* **Utility Features:** You can easily check the current element count using the `.size()` method. Queues can also be initialized directly with inline assignments (e.g., `'{10, 20, 30}`) and printed entirely using the `%p` format specifier in `$display` statements.
+
+</details>
