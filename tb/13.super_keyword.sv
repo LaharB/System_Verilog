@@ -103,3 +103,41 @@ module tb;
   end 
   
 endmodule
+
+// Example 4 - Immediate Parent classes
+
+class A; 
+  
+  function void msg();
+    $display("Class A");    
+  endfunction
+  
+endclass
+
+class B extends A; 
+  
+  function void msg();
+    $display("Class B");    
+  endfunction
+  
+endclass
+
+class C extends B; 
+  
+  function void msg();
+    $display("Class C"); 
+    super.msg(); //calls B's msg(), not A's
+  endfunction
+  
+endclass
+
+module tb;
+  
+  C obj;
+  
+  initial begin    
+    obj = new();
+    obj.msg();
+  end 
+  
+endmodule
