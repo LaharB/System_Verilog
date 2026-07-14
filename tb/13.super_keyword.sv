@@ -35,4 +35,35 @@ module tb;
   
 endmodule
 
-//Example 2 -  
+// Example 2 - Calling Parent method from Child
+
+class parent;  
+  //parent custom constructor
+  function void display();
+    $display("Parent display method");    
+  endfunction
+  
+endclass
+
+class child extends parent;
+  
+  //child custom constructor
+  function void display();
+    $display("Child display method - before calling PARENT");  
+    super.display();
+    $display("Child display method - after calling PARENT"); 
+  endfunction 
+  
+endclass
+
+
+module tb;
+  
+  child c;
+  
+  initial begin    
+    c = new();
+    c.display();
+  end 
+  
+endmodule 
