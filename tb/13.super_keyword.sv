@@ -67,3 +67,39 @@ module tb;
   
 endmodule 
 
+// Example 3 - Accessing base class data member
+
+class parent; 
+  
+  bit [31:0] data;
+  
+  function void display();
+    $display("PARENT: data = %0d", data);    
+  endfunction
+  
+endclass
+
+class child extends parent;
+  
+  bit [31:0] data;
+  
+  function void display();
+     super.data = 3; //parent class data member
+     super.display();
+    $display("CHILD: data = %0d", data);     
+  endfunction 
+  
+endclass
+
+
+module tb;
+  
+  child c;
+  
+  initial begin    
+    c = new();
+    c.data = 5;
+    c.display();
+  end 
+  
+endmodule
