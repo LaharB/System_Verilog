@@ -99,3 +99,17 @@
 * **Utility Features:** You can easily check the current element count using the `.size()` method. Queues can also be initialized directly with inline assignments (e.g., `'{10, 20, 30}`) and printed entirely using the `%p` format specifier in `$display` statements.
 
 </details>
+
+-------
+
+<details>
+<summary>SystemVerilog OOP: Inheritance and the super Keyword</summary>
+
+# SystemVerilog OOP: Inheritance and the super Keyword
+
+* **Constructor Chaining:** When instantiating a child class, the parent's constructor (`new()`) must execute to initialize inherited properties. You use `super.new()` inside the child's constructor to explicitly call the parent class constructor.
+* **Method Overriding & Extension:** A child class can override a parent's method (like a `display()` function) to provide specialized behavior. If you still want to execute the parent's original logic alongside the new behavior, you call `super.method_name()` from within the child's overridden method.
+* **Variable Shadowing:** If a child class declares a data member with the exact same name as one in the parent class (e.g., both have `data`), the child's variable "shadows" or hides the parent's version. To explicitly write to or read from the parent's hidden variable, you prefix it with `super` (e.g., `super.data`).
+* **Immediate Ancestry Only:** The `super` keyword strictly points one level up the inheritance tree to the *immediate* parent class. In a multi-level inheritance chain (e.g., Class C extends Class B, which extends Class A), using `super.msg()` inside Class C will exclusively call Class B's method, not Class A's.
+
+</details>
