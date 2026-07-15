@@ -32,7 +32,7 @@ module tb;
     p.data = 10;
     p.id = 2;
     
-    p.display();
+    p.display(); //will call Parent's Function
     
     c.data = 5;
     c.id = 2;
