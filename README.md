@@ -113,3 +113,21 @@
 * **Immediate Ancestry Only:** The `super` keyword strictly points one level up the inheritance tree to the *immediate* parent class. In a multi-level inheritance chain (e.g., Class C extends Class B, which extends Class A), using `super.msg()` inside Class C will exclusively call Class B's method, not Class A's.
 
 </details>
+
+-------
+
+<details>
+<summary>SystemVerilog OOP: Polymorphism and Virtual Methods</summary>
+
+# SystemVerilog OOP: Polymorphism and Virtual Methods
+
+* **Base Handles, Child Objects:** A fundamental rule of SystemVerilog OOP is that a parent class handle can legally point to a child class object (e.g., `p = c;`). This enables polymorphism.
+* **Dynamic Method Lookup (`virtual`):** When a method is declared as `virtual` in the base class, SystemVerilog looks at the *object type* rather than the *handle type* at runtime. If a parent handle points to a child object, calling a `virtual` method executes the child's overridden version.
+* **Static Method Lookup (Non-Virtual):** If a method lacks the `virtual` keyword, it is bound at compile time based on the *handle type*. Calling a non-virtual method using a parent handle will always execute the parent's version, regardless of the object it points to.
+* **Arrays of Base Handles:** You can create an array of parent handles to store objects of various child classes (e.g., `parent p[2]; p[0] = c1; p[1] = c2;`). This is incredibly powerful in UVM/verification for iterating through different transaction types using a unified interface.
+* **Handle Limitations & Downcasting:** 
+  * A parent handle pointing to a child object *cannot* directly access properties or methods that are exclusive to the child class. 
+  * **Strict Typing:** Assigning a parent handle to a child handle (`c = p;`) is an illegal direct assignment. 
+  * **Runtime Cast Failure:** Even if you try to force the assignment dynamically using `$cast(c, p);`, the cast will **fail at runtime** if the parent handle points to a base parent object. SystemVerilog strictly prevents a child handle from pointing to a base object because the parent object lacks the extended properties and methods that the child handle expects.
+
+</details>

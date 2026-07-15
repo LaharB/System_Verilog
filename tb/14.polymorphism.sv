@@ -132,6 +132,7 @@ module tb;
     p = c; //class assignment 
     
     /*
+    NOTE
     c = p;
     This will result in a compilation error. A child handle cannot point to a parent object.
 
