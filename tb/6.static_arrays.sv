@@ -22,3 +22,19 @@ module array_example;
   end
   
 endmodule
+
+// 3D array
+module array_example;
+  
+  //R0,C0 for L0, L1 and L2 resp and so on
+  int array[3][3][3] = '{ '{'{1, 10, 100}, '{2, 20, 200}, '{3, 30, 300}}, //R0,C0
+                         '{'{4, 40, 400}, '{5, 50, 500}, '{6, 60, 600}}, //R1,C1
+                         '{'{7, 70, 700}, '{8, 80, 800}, '{9, 90, 900}} //R2,C2 
+                        };
+  initial begin
+    foreach(array[i, j, k]) begin
+      $display("array[%0d][%0d][%0d] is %0d", i, j, k, array[i][j][k]);   
+    end   
+  end
+
+endmodule
