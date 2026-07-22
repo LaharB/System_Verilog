@@ -6,8 +6,7 @@ module array_example;
   initial begin
     foreach(array[i]) begin
       $display("array[%0d] = %0d", i, array[i]);
-    end
-    
+    end    
   end
   
 endmodule
@@ -19,9 +18,7 @@ module array_example;
   initial begin
     foreach(array[i, j]) begin
       $display("array[%0d][%0d] is %0d", i, j, array[i][j]);   
-    end
-    
+    end  
   end
-  
   
 endmodule
