@@ -62,9 +62,7 @@ module tb;
     packed_array = '{4'h2, 4'h6, 4'h4};
     foreach(packed_array[i]) begin
       $display("packed_array[%0d]: %b", i, packed_array[i]);
-    end
-    
-  end
-  
+    end    
+  end  
   
 endmodule
