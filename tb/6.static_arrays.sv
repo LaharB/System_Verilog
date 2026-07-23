@@ -38,3 +38,18 @@ module array_example;
   end
 
 endmodule
+
+//Packed Array
+module tb;
+  
+  bit [7:0] my_data; 
+  
+  initial begin
+    my_data = 8'hA2;
+    for(int i = 0; i < $size(my_data); i++) begin
+      $display("my_data[%0d]: %0d", i, my_data[i]);
+    end
+    
+  end 
+  
+endmodule
