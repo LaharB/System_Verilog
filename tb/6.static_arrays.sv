@@ -48,8 +48,7 @@ module tb;
     my_data = 8'hA2;
     for(int i = 0; i < $size(my_data); i++) begin
       $display("my_data[%0d]: %0d", i, my_data[i]);
-    end
-    
+    end   
   end 
   
 endmodule
