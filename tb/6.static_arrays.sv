@@ -52,3 +52,19 @@ module tb;
   end 
   
 endmodule
+
+//Packed Array - with elements 
+module tb;
+  
+  bit [2:0][3:0] packed_array; //3 elements of each 4 bits 
+  
+  initial begin
+    packed_array = '{4'h2, 4'h6, 4'h4};
+    foreach(packed_array[i]) begin
+      $display("packed_array[%0d]: %b", i, packed_array[i]);
+    end
+    
+  end
+  
+  
+endmodule
